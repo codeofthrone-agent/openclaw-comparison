@@ -20,6 +20,7 @@
 | **6** | 5 min | [📊 變體深度對比與場景選擇](#段落-6️⃣-變體深度對比與場景選擇) | Sec 6 |
 | **7** | 2 min | [🚀 總結與未來展望](#段落-7️⃣-總結與未來展望) | Sec 7 |
 | — | — | [📋 附錄：參考資料與資源](#-附錄參考資料與資源) | Appx |
+| — | — | [🔄 附錄 A：Workflow 實作指南 (Deep Dive)](#-附錄附錄-a-workflow-實作指南-deep-dive) | Appx A |
 
 ---
 
@@ -522,7 +523,10 @@ steps:
 | **Session Scope** | Workflow 的 Session 範圍 | main, isolated, current |
 | **Pre-exec Hooks** | 每步執行前的勾子 | 檢查條件、準備數據 |
 
-> **💡 調教技巧**：先用簡單的手動觸發測試 Workflow，確認每步的 input/output 格式正確，再改成 cron 自動觸發。使用 `isolated` session scope 可以避免污染主對話上下文。
+> **💡 提示**：先用簡單的手動觸發測試 Workflow，確認每步的 input/output 格式正確，再改成 cron 自動觸發。使用 `isolated` session scope 可以避免污染主對話上下文。
+
+👉 **[🔗 進階閱讀：OpenClaw 生態系 Workflow 實作指南 (Deep Dive)](./workflow-deep-dive.md)**
+> 想知道 **Hermes / ZeroClaw / TinyAGI** 各自如何處理 Workflow？（Lobster 不是唯一的選擇！請參考完整對比報告 📋 #15）
 
 ### 📝 3.5 Memory & Indexing — 長期記憶與知識檢索
 
