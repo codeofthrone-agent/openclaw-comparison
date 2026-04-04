@@ -328,52 +328,79 @@ TinyAGI 的 Workflow 是面向「人/角色」的。你不需要定義「先做 
 
 ---
 
-## 6. 🛡️ IronClaw & Moltis: 極簡主義 (無內建引擎)
+## 6. 🐍 Hermes Agent: Agentic Workflow + Python (意圖驅動)
 
-**定位**：安全第一，功能第二。  
-**現狀**：**沒有內建的 Workflow 引擎。**
+**定位**：不使用 DSL，由 Agent 自主推理執行步驟，或由使用者生成確定性腳本。  
+**機制**：`SKILL.md` (自然語言 SOP) + `Cron` (自然語言指令) + `execute_code` (Python 代碼生成)。
 
-對於這些強調安全 (Security/Audit) 的變體，引入動態的腳本執行引擎會增加攻擊面。
+### 為什麼 Hermes 沒有 Lobster？
+Hermes 的核心設計哲學是 **"Provider-agnostic & Agent-Centric"**。它認為固定的 YAML 流程缺乏彈性。
+- 如果網頁連線失敗？Lobster 可能會中斷腳本，但 Hermes Agent 會**自主嘗試** Google 搜尋或重試。
 
-### 如何解決？
+### Hermes 的 Workflow 實作方式
 
-如果你使用 IronClaw 或 Moltis 且需要自動化：
+#### A. 🟢 Agentic Skills (自然語言 SOP)
+在 `SKILL.md` 中寫下步驟，Agent 會自動讀取並執行。
 
-1.  **系統層級 Cron**:
-    使用 Linux/macOS 本身的 `crontab` 來定期呼叫 OpenClaw CLI 的 API 或指令。
-    ```bash
-    # crontab -e
-    0 9 * * * /usr/bin/openclaw-cli run-task daily-report
-    ```
-2.  **外部 Webhook**:
-    配置外部服務 (如 Zapier, Make.com) 發送 Webhook 到 IronClaw/Moltis 的 Web Gateway，觸發特定指令。
+```markdown
+# SKILL.md: Daily Report
+## 目標
+每天早上 9 點生成工作報告。
+## 步驟
+1. 檢查 `calendar` 技能獲取今天的會議。
+2. 檢查 `email` 技能獲取未讀信件。
+3. 撰寫摘要。
+4. 發送到 Telegram。
+```
 
----
+#### B. 🔵 Code-as-Workflow (最省 Token + 100% 格式固定)
+這是在 Hermes 中實現「類 Lobster (確定性)」的最佳方法。**讓 Agent 寫 Python，然後執行 Python。**
+- **優點**：
+    1. Token 消耗為 0（腳本執行不需要 LLM）。
+    2. 結果格式 100% 固定 (JSON/CSV)，沒有幻覺。
+    3. 錯誤處理 (try/except) 由 Python 控制，極其穩定。
 
-## 7. 📊 總對比矩陣與決策指南
+## 7. 📦 CoPaw & LobsterAI: 應用程式化工作流
 
-### 工作流機制全對比
+這兩個變體採取了「App 化」的路線。
 
-| 特性 | **OpenClaw** (Lobster) | **ZeroClaw** (SOPs) | **Python** (NanoBot) | **TinyAGI** (Orchestrator) | **IronClaw** (極簡) |
-|:---:|:---|:---|:---|:---|:---|
-| **類型** | 宣告式 DSL | 事件驅動 | 程式碼 (Code) | 多代理編排 | 外部觸發 |
-| **格式** | YAML | JSON/YAML | Python | 配置 (Config) | 系統 Cron |
-| **維護者** | 全棧工程師/IAM | 嵌入式工程 | 開發者 | PM / 營運商 | DevOps |
-| **Token 消耗** | ⭐ (極低) | ⭐⭐ (低) | ⭐⭐⭐ (中/高) | ⭐⭐ (視規劃) | ⭐ (無) |
-| **靈活性** | ⭐⭐⭐⭐ (中高) | ⭐⭐ (低) | ⭐⭐⭐⭐⭐ (最高) | ⭐⭐⭐⭐⭐ (極高) | ⭐ (無) |
-| **除錯難度** | ⭐⭐⭐ (中) | ⭐ (易) | ⭐⭐⭐⭐⭐ (易) | ⭐⭐⭐⭐ (難) | ⭐⭐ (中) |
-| **容錯力** | 低 (遇錯中斷) | 低 | 高 (可寫 try/catch) | 高 (Agent 可重試) | N/A |
+### CoPaw (阿里/清華 Python 版)
+- **機制**：依賴 Python 生態系的 `schedule` 或 `cron` 庫。
+- **Workflow**: 就像寫 Python 腳本一樣，直接呼叫 `copaw` 提供的 SDK 進行自動化。對於中國開發者來說，這是最符合直覺的方式。
 
-### 決策指南：你的自動化屬於哪一種？
+### LobsterAI (網易有道全場景版)
+- **機制**：**注意！雖然名字有 Lobster，但它不是 OpenClaw 的 DSL。**
+- **Workflow**: 它依賴於 **「Cowork Mode (協作模式)」**。
+    - 用戶透過 Desktop App 啟動一個 Work Session。
+    - Agent 在這個 Session 中持續執行任務（如爬蟲、分析），直到用戶停止。
+    - 這是一種**互動式工作流**，而非背景自動化腳本。
 
-| 你的需求情境 | 推薦框架機制 |
-|:---|:---|
-| 我需要一個 **穩定的每日報表** (固定格式)。 | ✅ OpenClaw (Lobster YAML) |
-| 我有一個 **IoT 設備警報** 需要 <10ms 反應。 | ✅ ZeroClaw (SOPs) |
-| 我有一個 **複雜的數據處理流程** (需解析/判斷)。 | ✅ NanoBot/NanoClaw (Python 腳本) |
-| 我需要管理 **整個公司流程** (寫作→審核→發布)。 | ✅ TinyAGI (Orchestrator) |
-| 我要求 **最高安全**，不想跑動態腳本。 | ✅ IronClaw/Moltis (系統 Cron) |
-| 我是非技術人員，想用自然語言設定。 | ✅ RivonClaw (Easy Mode) |
+## 8. 🦀 NullClaw & ZeptoClaw: 極簡主義 (Minimalist)
+
+### NullClaw (Zig)
+- **Workflow**: **無內建引擎**。
+- **解法**：由於它是 678KB 的單一靜態執行檔，設計哲學是「Do One Thing Well」。依賴外部工具觸發（如 `cron`），它只需要負責接收指令、執行並退出。
+
+### ZeptoClaw (Zig/Rust 實驗版)
+- **Workflow**: 目前處於實驗階段，僅支援基礎的 CLI 指令串接。不具備複雜的背景任務調度能力。
+
+## 9. 📊 總結對比矩陣 (15 項全景)
+
+| 專案 | Workflow 機制 | Token 消耗 | 確定性 (固定格式) | 靈活性 | 適合誰？ |
+|:---|:---|:---:|:---:|:---:|:---|
+| **OpenClaw** | **Lobster DSL (YAML)** | ⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 需要穩定自動化腳本的人 |
+| **RivonClaw** | **Easy Mode (自然語言)** | ⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | 不想寫 YAML 的非技術人員 |
+| **Hermes** | **Agentic Skills / Python** | 🔵 0 - ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 需要確定性結果 或 高容錯的人 |
+| **ZeroClaw** | **SOPs (事件驅動)** | ⭐ | ⭐⭐⭐⭐ | ⭐⭐ | IoT / 嵌入式 / 警報系統 |
+| **TinyAGI** | **Team Orchestrator** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | 管理多個 Agent 團隊的 PM |
+| **NanoBot** | **Python Code** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Python 開發者 |
+| **NanoClaw** | **Anthropic SDK Task** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 需要容器化隔離任務的人 |
+| **CoPaw** | **Python SDK** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 阿里/清華生態系開發者 |
+| **LobsterAI** | **Cowork Mode (互動)** | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | 需要 AI 陪著一起工作的人 |
+| **IronClaw** | **無 (系統 Cron)** | ⭐ | N/A | N/A | 安全敏感，禁止動態腳本 |
+| **Moltis** | **無 (系統 Cron)** | ⭐ | N/A | N/A | 單一進程服務，依賴外部 |
+| **NullClaw** | **外部觸發 (CLI)** | ⭐ | N/A | N/A | 極致資源受限 |
+| **ZeptoClaw** | **無 (命令列)** | ⭐ | N/A | N/A | 嘗試新技術的實驗者 |
 
 ---
 
@@ -465,6 +492,84 @@ while True:
     }
   ]
 }
+```
+
+### E. 🔵 Hermes Agent (Code-as-Workflow / Agentic)
+
+#### 模式 A: 自動生成代碼 (最穩定)
+**情境**：每天早上 9 點產出格式固定的 JSON 報表。
+**方法**：告訴 Agent 撰寫 Python 腳本，並用 `cron` 定期執行該腳本。
+
+```python
+# ~/hermes-workflows/daily_report.py
+import json
+import requests
+from datetime import datetime
+
+def run():
+    # 1. 獲取數據 (API)
+    data = requests.get("https://api.example.com/metrics").json()
+    
+    # 2. 處理並強制格式
+    report = {
+        "date": datetime.now().isoformat(),
+        "status": "OK" if data["cpu"] < 80 else "WARNING",
+        "metrics": data
+    }
+    
+    # 3. 寫入本地檔案或發送 Webhook
+    with open("/tmp/report.json", "w") as f:
+        json.dump(report, f)
+    
+    print(json.dumps(report))
+
+if __name__ == "__main__":
+    run()
+```
+然後在 Hermes 使用：`cronjob create "每天 9 點執行 ~/hermes-workflows/daily_report.py" --schedule "0 9 * * *"`
+
+#### 模式 B: Agentic Skill (高容錯)
+**情境**：幫我研究一個主題，搜尋結果可能變化。
+**方法**：寫在 `SKILL.md` 中，由 Agent 自主決定如何搜尋和寫報告。
+*(參考正文 Section 6.1 的 Markdown 範例)*
+
+### F. 📦 NanoClaw (Anthropic SDK 容器任務)
+
+```python
+import docker
+from anthropic import Anthropic
+
+client = Anthropic()
+
+# 使用容器隔離來執行危險任務
+def run_isolated_task(prompt):
+    # 1. 讓 LLM 生成 Bash 代碼
+    response = client.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=1024,
+        system="You are a secure coding assistant.",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    code = response.content
+    
+    # 2. 在臨時容器執行 (Docker Isolation)
+    docker_client = docker.from_env()
+    docker_client.containers.run("python:3.11", code, remove=True, network_disabled=True)
+
+run_isolated_task("Scrape and analyze this URL...")
+```
+
+### G. 🛡️ IronClaw / Moltis (系統級 Cron 外部觸發)
+
+```bash
+# 利用 Linux crontab 定期呼叫 API 或執行腳本
+# crontab -e
+
+# 0 3 * * *  每天早上 3 點執行安全審計腳本
+0 3 * * * /home/user/scripts/ironclaw-audit.sh
+
+# 每隔 1 小時透過 Webhook 觸發 Moltis
+0 * * * * curl -X POST http://localhost:8080/api/workflows/heartbeat
 ```
 
 ---
