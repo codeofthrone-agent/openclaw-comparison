@@ -21,6 +21,7 @@
 | **7** | 2 min | [🚀 總結與未來展望](#段落-7️⃣-總結與未來展望) | Sec 7 |
 | — | — | [📋 附錄：參考資料與資源](#-附錄參考資料與資源) | Appx |
 | — | — | [🔄 附錄 A：Workflow 實作指南 (Deep Dive)](#-附錄附錄-a-workflow-實作指南-deep-dive) | Appx A |
+| — | — | [📱 附錄 B：原生 App vs PhoneClaw 能力對比](#-附錄附錄-b-原生-app-vs-phoneclaw-能力對比) | Appx B |
 
 ---
 
@@ -1060,7 +1061,7 @@ monthly:
 | 9 | `nullclaw-vs-openclaw.md` | [#9](https://github.com/codeofthrone-agent/openclaw-comparison/issues/9) |
 | 10 | `moltis-vs-openclaw.md` | [#10](https://github.com/codeofthrone-agent/openclaw-comparison/issues/10) |
 | 11 | `zeptoclaw-vs-openclaw.md` | [#11](https://github.com/codeofthrone-agent/openclaw-comparison/issues/11) |
-| 12 | `rivonclaw-vs-openclaw.md` | [#12 已合併至 Hermes Issue](https://github.com/codeofthrone-agent/openclaw-comparison/issues/12) |
+| 12 | `rivonclaw-vs-openclaw.md` | [#16](https://github.com/codeofthrone-agent/openclaw-comparison/issues/16) |
 | ★ | `SUMMARY-report.md` | [#13](https://github.com/codeofthrone-agent/openclaw-comparison/issues/13) |
 
 ### B. 外部資源
