@@ -112,20 +112,14 @@ Input (WhatsApp / Telegram / Discord / Signal / iMessage / WebChat ...)
 ### 13 變體 + 基準對照：生態系規模
 
 ```
-347K ┤                                                                        ★ OpenClaw
+347K ┤                                   ★ OpenClaw (TS, 347K)
      │
- 38K ┤  ★ Hermes Agent (Python, ~39.6K Stars)                      ★ NanoBot
-     │                                                                 ★ ZeroClaw (~29K, Rust)
- 27K ┤                                                            ★ PicoClaw (Go, 27K)
-     │                                                        ★ NanoClaw (TS, 26K)
- 14K ┤                                                  ★ CoPaw (Python, 14K)
-     │                                           ★ IronClaw (Rust, 11K)
-  7K ┤                                       ★ NullClaw (Zig, 7K)
-     │                             ★ LobsterAI (TS, 5K)
-  3K ┤                           ★ TinyAGI (TS, 3K)
-     │                    ★ Moltis (Rust, 2K)
- 0.5K ┤             ★ ZeptoClaw (Rust, 556)
-     │      ★ RivonClaw (TS, 252)
+ 38K ┤★ Hermes Agent (Python, ~39.6K)     ★ NanoBot (Python, 38K)     ★ ZeroClaw (Rust, ~29K)
+ 27K ┤                                    ★ NanoClaw (TS, 26K)        ★ PicoClaw (Go, 27K)
+ 14K ┤★ CoPaw (Python, 14K)               ★ IronClaw (Rust, 11K)      ★ NullClaw (Zig, 7K)
+  7K ┤                                    ★ LobsterAI (TS, 5K)
+  3K ┤                                    ★ TinyAGI (TS, 3K)          ★ Moltis (Rust, 2K)
+ 0.5K ┤                                   ★ ZeptoClaw (Rust, 556)     ★ RivonClaw (TS, 252)
      │
      └────┬────────────┬────────────┬────────────┬────────────┤
        Python         Rust        TypeScript      Go/Zig
