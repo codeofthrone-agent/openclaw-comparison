@@ -1,31 +1,13 @@
-# 🦞 OpenClaw 全方位教學報告 V1.0
+# 🦞 OpenClaw 全方位教學報告 V2.0
 
-> **報告版本**：V1.0 | **整理日期**：2026-04-04  
-> **適用版本**：OpenClaw v2026.3.23+ | **預計講授時長**：40 分鐘  
-> **資料來源**：13 份深度變體比較報告 + Hermes Agent 對比 + 生態系全貌分析 + DeepWiki  
-> **用途**：從入門到精通的完整教學指南  
-
----
-
-## 📑 目錄
-
-| 段落 | 時間 | 章節 | 頁碼 |
-|:---:|:---:|:---|:---:|
-| **0** | 1 min | [🗺️ Overview：今日旅程導覽](#段落-0️⃣-overview今日旅程導覽) | Sec 0 |
-| **1** | 5 min | [🌍 生態系全景與核心哲學](#段落-1️⃣-生態系全景與核心哲學) | Sec 1 |
-| **2** | 6 min | [📦 安裝部署與環境準備](#段落-2️⃣-安裝部署與環境準備) | Sec 2 |
-| **3** | 10 min | [🧠 Agent 調教實戰：賦予靈魂](#段落-3️⃣-agent-調教實戰賦予靈魂-core-章節) | Sec 3 |
-| **4** | 6 min | [📡 通訊接入與多 Agent 架構](#段落-4️⃣-通訊接入與多-agent-架構) | Sec 4 |
-| **5** | 5 min | [🔒 安全性、沙盒與企業管控](#段落-5️⃣-安全性沙盒與企業管控) | Sec 5 |
-| **6** | 5 min | [📊 變體深度對比與場景選擇](#段落-6️⃣-變體深度對比與場景選擇) | Sec 6 |
-| **7** | 2 min | [🚀 總結與未來展望](#段落-7️⃣-總結與未來展望) | Sec 7 |
-| — | — | [📋 附錄：參考資料與資源](#-附錄參考資料與資源) | Appx |
-| — | — | [🔄 附錄 A：Workflow 實作指南 (Deep Dive)](#-附錄附錄-a-workflow-實作指南-deep-dive) | Appx A |
-| — | — | [📱 附錄 B：原生 App vs PhoneClaw 能力對比](#-附錄附錄-b-原生-app-vs-phoneclaw-能力對比) | Appx B |
+> **報告版本**：V2.0  
+> **適用版本**：OpenClaw v2026.3.23+  
+> **用途**：段落 0 保留單頁；段落 1–7 各拆分為 1–4 頁
 
 ---
 
 ## 段落 0️⃣ Overview：今日旅程導覽
+
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -52,7 +34,10 @@
 
 ---
 
-## 段落 1️⃣ 生態系全景與核心哲學
+
+---
+
+## 段落 1️⃣ 生態系全景與核心哲學 — 第 1 頁
 
 ### 什麼是 OpenClaw？
 
@@ -74,6 +59,11 @@ OpenClaw 是一個**個人 AI 助理框架**，開源社群開發，以 TypeScri
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+
+---
+
+## 段落 1️⃣ 生態系全景與核心哲學 — 第 2 頁
 
 ### 架構設計：Gateway + Agent Runtime 分離
 
@@ -114,6 +104,11 @@ Input (WhatsApp / Telegram / Discord / Signal / iMessage / WebChat ...)
 | **Agent Runtime** | Pi embedded runner (`runEmbeddedPiAgent`）、獨立 AI 執行引擎 |
 | **Extensions** | Plugin 架構：Channels, Models, Tools, Skills, Speech, Image Gen |
 
+
+---
+
+## 段落 1️⃣ 生態系全景與核心哲學 — 第 3 頁
+
 ### 13 變體 + 基準對照：生態系規模
 
 ```
@@ -140,7 +135,10 @@ Input (WhatsApp / Telegram / Discord / Signal / iMessage / WebChat ...)
 
 ---
 
-## 段落 2️⃣ 安裝部署與環境準備
+
+---
+
+## 段落 2️⃣ 安裝部署與環境準備 — 第 1 頁
 
 ### 系統需求
 
@@ -152,6 +150,11 @@ Input (WhatsApp / Telegram / Discord / Signal / iMessage / WebChat ...)
 | **Docker** (可選，沙盒) | Docker Desktop / Engine | 最新版 + 資源 ≥ 4GB |
 | **記憶體** | ≥ 2GB | ≥ 4GB（運行多 Agent 時） |
 | **磁碟** | ≥ 500MB（核心） | ≥ 2GB（含 node_modules + Docker） |
+
+
+---
+
+## 段落 2️⃣ 安裝部署與環境準備 — 第 2 頁
 
 ### 🚀 方法一：Homebrew（推薦 macOS 用戶）
 
@@ -170,6 +173,11 @@ openclaw init
 # 會創建 ~/.openclaw/ 目錄 + 基本配置檔
 ```
 
+
+---
+
+## 段落 2️⃣ 安裝部署與環境準備 — 第 3 頁
+
 ### 📦 方法二：npm 全局安裝
 
 ```bash
@@ -183,6 +191,11 @@ npm install -g openclaw
 # 3. 初始化
 openclaw init
 ```
+
+
+---
+
+## 段落 2️⃣ 安裝部署與環境準備 — 第 4 頁
 
 ### 🐳 方法三：Docker Compose（推薦生產環境）
 
@@ -219,51 +232,11 @@ docker compose logs -f openclaw
 # http://localhost:18789
 ```
 
-### 第一次啟動與驗證
-
-```bash
-# 啟動 OpenClaw
-openclaw run
-
-# 你應該會看到：
-# ✓ Gateway started on ws://localhost:8080
-# ✓ Web UI available at http://localhost:18789
-# ✓ Agent runtime initialized
-
-# CLI 模式直接對話
-openclaw chat "你好！你是誰？"
-
-# 或訪問 Web UI：http://localhost:18789
-```
-
-### 基本配置文件結構
-
-初始化後，`~/.openclaw/` 目錄結構如下：
-
-```
-~/.openclaw/
-├── openclaw.yaml          # 主配置檔
-├── models.json            # LLM 模型目錄與 Provider 設定
-├── auth-profiles.json     # API Key / OAuth 憑證
-├── agents/
-│   └── default/
-│       └── agent/
-│           ├── auth-profiles.json     # Agent 獨立的認證
-│           └── model-registry.json    # Agent 獨立的模型
-├── skills/                            # 共享技能庫
-├── sessions/                          # 對話記錄 (JSONL)
-└── workspaces/                        # Workspace 根目錄
-    └── default/
-        ├── SOUL.md                    # Agent 人格
-        ├── AGENTS.md                  # 行為邊界
-        └── skills/                    # Agent 獨立的技能
-```
-
-> **⚡ 提示**：OpenClaw 的配置使用 **Zod Schema** 嚴格驗證 — 如果你在 `openclaw.yaml` 裡寫了未知的 key，啟動時會直接拒絕。這是一個強安全/強正確性設計。
 
 ---
 
-## 段落 3️⃣ Agent 調教實戰：賦予靈魂 ⭐ CORE 章節
+## 段落 3️⃣ Agent 調教實戰：賦予靈魂 ⭐ CORE 章節 — 第 1 頁
+
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -281,6 +254,11 @@ openclaw chat "你好！你是誰？"
 │                                                            │
 └────────────────────────────────────────────────────────────┘
 ```
+
+
+---
+
+## 段落 3️⃣ Agent 調教實戰：賦予靈魂 ⭐ CORE 章節 — 第 2 頁
 
 ### 🧙‍♂️ 3.1 SOUL.md — Agent 的人格定義
 
@@ -324,6 +302,11 @@ Session Context ──→ Memory Plugin (向量+BM25) ──→ Prompt Assembly 
 
 > **💡 調教技巧**：從「描述你的理想同事」開始寫 SOUL.md。想像一個具體的角色 — 他有名字、有專長、有脾氣。你的 Agent 會真的「活過來」。
 
+
+---
+
+## 段落 3️⃣ Agent 調教實戰：賦予靈魂 ⭐ CORE 章節 — 第 3 頁
+
 ### 📜 3.2 AGENTS.md — 行為邊界與最高指令
 
 **AGENTS.md**（類似專案中的 AGENTS.md，但放在 OpenClaw Workspace 中）定義 Agent 的**操作邊界、工作流程偏好、專案規範**：
@@ -353,6 +336,11 @@ Session Context ──→ Memory Plugin (向量+BM25) ──→ Prompt Assembly 
 ❌ 不要修改 ~/.openclaw/ 以外的系統設定
 ❌ 不要向未認證的 endpoint 發送資料
 ```
+
+
+---
+
+## 段落 3️⃣ Agent 調教實戰：賦予靈魂 ⭐ CORE 章節 — 第 4 頁
 
 ### 🛠️ 3.3 Skills System — 擴展武器庫
 
@@ -436,163 +424,10 @@ openclaw skills list
 
 > **⚡ 與 Hermes 的對比**：Hermes 也有類似的 SKILL.md 格式和 Skills Hub（支援 GitHub / skills.sh 來源），但 **OpenClaw 允許 Agent 自主安裝技能**（可透過 Plugin），而 Hermes **僅限用戶手動操作**。
 
-### 🕸️ 3.4 Workflows (Lobster DSL) — 自動化工作流
-
-OpenClaw 內建 **Lobster** — 一個**型別化的工作流 DSL (Domain-Specific Language)**，讓你可以編排複雜的自動化任務流。
-
-#### 什麼是 Lobster Workflow？
-
-Lobster 是一種**聲明式**的自動化語言，你可以定義「當 X 發生時，執行 Y，然後 Z，把結果交給 Agent 審查」。
-
-```yaml
-# workflows/daily-report.yaml
-name: daily-report
-description: 每日自動生成專案報告並發送到 Slack
-
-trigger:
-  cron: "0 9 * * *"     # 每天早上 9 點
-  # 也可用 webhook / manual / event
-
-steps:
-  - name: gather-data
-    tool: exec
-    command: |
-      python scripts/gather_metrics.py --output /tmp/metrics.json
-
-  - name: analyze
-    tool: llm_task
-    prompt: |
-      根據以下數據分析專案健康度，生成摘要報告：
-      {{ steps.gather-data.output }}
-    model: claude-sonnet-4-20250514
-    output_format: json
-    schema:
-      type: object
-      properties:
-        status: { type: string, enum: ["healthy", "warning", "critical"] }
-        summary: { type: string }
-        action_items: { type: array, items: { type: string } }
-
-  - name: send-report
-    tool: message
-    channel: slack
-    channel_id: "#engineering"
-    template: |
-      📊 每日報告 — 狀態: {{ steps.analyze.output.status }}
-
-      {{ steps.analyze.output.summary }}
-
-      待辦事項:
-      {% for item in steps.analyze.output.action_items %}
-      - {{ item }}
-      {% endfor %}
-```
-
-#### Workflow 的核心概念
-
-```
-┌─────────────┐
-│   Trigger   │  ← 觸發器：cron / webhook / manual / event
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│  Step 1     │  ← 工具執行：exec / web_fetch / code_execution
-│  (gather)   │
-└──────┬──────┘
-       │ output
-       ▼
-┌─────────────┐
-│  Step 2     │  ← LLM 處理：結構化 JSON 輸出 + Zod 驗證
-│  (analyze)  │
-└──────┬──────┘
-       │ output
-       ▼
-┌─────────────┐
-│  Step 3     │  ← 發送結果：message / canvas / webhook
-│  (send)     │
-└─────────────┘
-```
-
-| 概念 | 說明 | 範例值 |
-|:---|:---|:---|
-| **Trigger** | 什麼時機觸發Workflow | cron, webhook, manual, event |
-| **Steps** | 依序執行的步驟 | exec, llm_task, message, browser |
-| **Tool** | 每步使用的工具 | exec, web_fetch, code_execution, image_generate |
-| **Output Format** | 輸出格式控制 | json (帶 Zod Schema), markdown, text |
-| **Session Scope** | Workflow 的 Session 範圍 | main, isolated, current |
-| **Pre-exec Hooks** | 每步執行前的勾子 | 檢查條件、準備數據 |
-
-> **💡 提示**：先用簡單的手動觸發測試 Workflow，確認每步的 input/output 格式正確，再改成 cron 自動觸發。使用 `isolated` session scope 可以避免污染主對話上下文。
-
-👉 **[🔗 進階閱讀：OpenClaw 生態系 Workflow 實作指南 (Deep Dive)](./workflow-deep-dive.md)**
-> 想知道 **Hermes / ZeroClaw / TinyAGI** 各自如何處理 Workflow？（Lobster 不是唯一的選擇！請參考完整對比報告 📋 #15）
-
-### 📝 3.5 Memory & Indexing — 長期記憶與知識檢索
-
-OpenClaw 的記憶系統由 **MemoryIndexManager** 驅動，支援多種檢索策略：
-
-```
-Memory Pipeline
-═══════════════
-
-Workspace *.md 檔案
-   │
-   ├── MemoryIndexManager 掃描
-   │   ├── BM25 全文檢索索引
-   │   ├── Embedding 向量化（可配置外部 embedding provider）
-   │   └── Metadata 提取（tags, date, type）
-   │
-   ▼
-Memory Index (持久化)
-   │
-   ▼
-用戶提問 ──→ Hybrid Search
-   │       ├── Step 1: 向量搜尋 (語意匹配)
-   │       ├── Step 2: BM25 (關鍵字匹配)
-   │       └── Step 3: Rerank (交叉評分)
-   │
-   ▼
-Top-K 相關記憶 ──→ 注入 Prompt ──→ LLM 回答
-```
-
-#### 記憶同步策略
-
-```yaml
-# openclaw.yaml 中的記憶配置
-memory:
-  sync_strategy: "on_demand"    # on_demand / auto / manual
-  embedding:
-    provider: "openai"          # openai / local
-    model: "text-embedding-3-small"
-  hybrid_search:
-    enabled: true
-    top_k: 5
-    rerank: true
-  qmd:
-    extraCollections: []        # 跨 Agent 搜尋（Agent A 搜尋 Agent B 的記憶）
-```
-
-#### 記憶檔案結構
-
-```
-workspace/
-├── SOUL.md                    # 人格（自動載入）
-├── AGENTS.md                  # 規則（自動載入）
-├── memory/
-│   ├── facts.md               # 用戶偏好與事實
-│   ├── projects.md            # 專案上下文
-│   └── preferences.md         # 個人習慣
-└── notes/
-    ├── meeting-2026-04-04.md  # 筆記（可被索引）
-    └── architecture-design.md
-```
-
-> **💡 提示**：Memory Index 是在 Agent 啟動時掃描的，新增記憶檔案後需要重啟 Agent 或觸發 `memory sync` 才會被索引。對於大型 workspace，建議使用 `on_demand` 同步策略以節省資源。
 
 ---
 
-## 段落 4️⃣ 通訊接入與多 Agent 架構
+## 段落 4️⃣ 通訊接入與多 Agent 架構 — 第 1 頁
 
 ### 📡 4.1 Channels — 接入你的通訊工具
 
@@ -606,6 +441,11 @@ OpenClaw 支援 **25+ 個通訊平台**，是最全面的選擇：
 | **中國平台** | WeChat (插件), Feishu 飛書 |
 | **其他** | Zalo (越南), Twitch, LINE, WebChat, WebSocket |
 | **原生 App** | macOS / iOS / Android Node |
+
+
+---
+
+## 段落 4️⃣ 通訊接入與多 Agent 架構 — 第 2 頁
 
 ### Channel 配置範例
 
@@ -627,6 +467,11 @@ channels:
     enabled: true
     # 使用 Baileys WebSocket 連接
 ```
+
+
+---
+
+## 段落 4️⃣ 通訊接入與多 Agent 架構 — 第 3 頁
 
 ### Agent Routing — 誰來回覆誰？
 
@@ -664,6 +509,11 @@ Agent: "work"
     ├── Auth: auth-profiles.json (work 的 API Key)
     └── Sessions: workspace-work 的對話記錄
 ```
+
+
+---
+
+## 段落 4️⃣ 通訊接入與多 Agent 架構 — 第 4 頁
 
 ### 🤖 4.2 Multi-Agent — ACP + ACPX
 
@@ -715,7 +565,11 @@ Parent Agent: "重構完成，共修改 23 個檔案"
 
 ---
 
-## 段落 5️⃣ 安全性、沙盒與企業管控
+
+---
+
+## 段落 5️⃣ 安全性、沙盒與企業管控 — 第 1 頁
+
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -732,6 +586,11 @@ Parent Agent: "重構完成，共修改 23 個檔案"
 │                                                            │
 └────────────────────────────────────────────────────────────┘
 ```
+
+
+---
+
+## 段落 5️⃣ 安全性、沙盒與企業管控 — 第 2 頁
 
 ### 5.1 防禦縱深流程
 
@@ -760,6 +619,11 @@ Inbound Message
 [7] Zod Validation → 配置檔嚴格驗證，拒絕未知 key
 ```
 
+
+---
+
+## 段落 5️⃣ 安全性、沙盒與企業管控 — 第 3 頁
+
 ### 5.2 DM Policy — 誰能跟你的 Agent 說話？
 
 ```yaml
@@ -771,6 +635,11 @@ security:
   # open：任何人都可以 DM
   # disabled：完全不接收 DM
 ```
+
+
+---
+
+## 段落 5️⃣ 安全性、沙盒與企業管控 — 第 4 頁
 
 ### 5.3 Tool Policy — Agent 能用什麼工具？
 
@@ -803,74 +672,10 @@ tools:
 | **messaging** | message, web_fetch, sessions | 客服 / 通訊 |
 | **minimal** | read, message | 最小權限 / 審閱 |
 
-### 5.4 Sandbox 隔離
-
-| 後端 | 隔離強度 | 說明 |
-|:---|:---|:---|
-| **Docker + seccomp/AppArmor** | ★★★★★ | 進程級隔離 + 系統呼叫限制 |
-| **SSH 遠端伺服器** | ★★★★☆ | 物理隔離 |
-| **原生 OS 隔離** | ★★★☆☆ | Workspace 目錄限制 |
-
-```yaml
-sandbox:
-  mode: "docker"            # docker / ssh / native
-  docker:
-    seccomp_profile: "default"
-    apparmor_profile: "openclaw-sandbox"
-    network: "isolated"     # isolated / bridge / host
-    workspace_only: true    # 檔案系統限制在 workspace
-    url_allowlist: []       # 僅允許連接到這些 URL
-    url_denylist:           # 拒絕連接到這些 URL
-      - "10.*"
-      - "172.16.*"
-      - "192.168.*"
-      - "127.0.0.1"
-```
-
-### 5.5 Security Audit & Tool Result Guard
-
-OpenClaw 內建完整的審計系統：
-
-| 審計模組 | 功能 |
-|:---|:---|
-| `audit.ts` | 核心安全事件審計 |
-| `audit-fs.ts` | 檔案系統變更審計 |
-| `audit-extra.ts` | 額外自訂審計 |
-| `fix.ts` | 自動修復檢測到的問題 |
-
-**Tool Result Guard** 確保工具輸出的格式和內容安全：
-
-```yaml
-security:
-  tool_result_guard: true     # 驗證工具輸出是否符合預期格式
-  capability_model:           # 定義 channel/agent 的允許操作
-    channels:
-      discord:
-        allowed: [exec, web_fetch, message]
-      telegram:
-        allowed: [message, web_fetch]
-```
-
-### 🔒 安全性對比：OpenClaw vs Hermes vs 變體
-
-| 安全能力 | OpenClaw | Hermes | NanoClaw | IronClaw | ZeroClaw |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 容器沙箱 | ✅ Docker | ✅ 6 種 | ✅ 預設 | ✅ WASM | ✅ Landlock |
-| seccomp/AppArmor | ✅ | ❌ | ✅ | ❌ | ❌ |
-| **DM Policy** | ✅ | ✅ | ❌ | ❌ | ❌ |
-| **Tool Policy** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Tool Result Guard** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Zod Validation** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Security Audit** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **SecretRef** | ✅ | 憑證池 | ❌ | AES-256-GCM | ❌ |
-| 危險命令 Regex | ❌ | ✅ | ❌ | ❌ | ❌ |
-| 審批機制 | ❌ | ✅ | ❌ | ❌ | ❌ |
-
-> **💡 關鍵洞察**：OpenClaw 在「策略控制」和「審計」方面領先（Tool Policy、Zod、Audit、Result Guard），而 Hermes 在「人機互動安全」方面更強（危險命令預審、審批機制、YOLO 模式）。兩者的安全哲學不同 — OpenClaw 偏向「架構防禦」，Hermes 偏向「行為審批」。
 
 ---
 
-## 段落 6️⃣ 變體深度對比與場景選擇
+## 段落 6️⃣ 變體深度對比與場景選擇 — 第 1 頁
 
 ### 全生態系全景矩陣
 
@@ -891,6 +696,11 @@ security:
 | 12 | **RivonClaw** | 252 | TS | OpenClaw UI 層 | 70/100 | 7/10 | 繼承 25+ |
 | 13 | **Hermes** | 開源 | Python | Provider-agnostic | 75/100 | 7/10 | ~17 |
 | — | **參照** | — | — | 獨立框架 | — | — | — |
+
+
+---
+
+## 段落 6️⃣ 變體深度對比與場景選擇 — 第 2 頁
 
 ### 🎯 場景選擇決策圖
 
@@ -917,6 +727,11 @@ security:
                      (18+      (HA 原生)
                     providers)
 ```
+
+
+---
+
+## 段落 6️⃣ 變體深度對比與場景選擇 — 第 3 頁
 
 ### 場景 × 專案推薦表
 
@@ -945,7 +760,10 @@ security:
 
 ---
 
-## 段落 7️⃣ 總結與未來展望
+
+---
+
+## 段落 7️⃣ 總結與未來展望 — 第 1 頁
 
 ### 核心回顧
 
@@ -978,6 +796,11 @@ security:
 └─────────────────────────────────────────────────────────┘
 ```
 
+
+---
+
+## 段落 7️⃣ 總結與未來展望 — 第 2 頁
+
 ### 日常維運清單
 
 ```yaml
@@ -998,6 +821,11 @@ monthly:
   - performance_tune: "openclaw config optimize"
 ```
 
+
+---
+
+## 段落 7️⃣ 總結與未來展望 — 第 3 頁
+
 ### 常見坑點與除錯指南
 
 | 問題 | 原因 | 解決方案 |
@@ -1008,6 +836,11 @@ monthly:
 | 工具呼叫無效 | Tool Profile 限制 | 檢查 `tools.profile` 配置 |
 | 子代理卡住 | ACPX CLI 無回應 | `openclaw sessions list` 查看卡住的 session |
 | 記憶體搜尋不到 | 索引未同步 | `openclaw memory sync` 或重啟 Agent |
+
+
+---
+
+## 段落 7️⃣ 總結與未來展望 — 第 4 頁
 
 ### 🗺️ 生態系展望
 
@@ -1038,60 +871,5 @@ monthly:
 
 ---
 
-## 📋 附錄：參考資料與資源
-
-### A. 完整報告清單
-
-完整比較報告（13 份變體 + 1 份基準 + 1 份總結）已整理於 GitHub：
-
-**GitHub Repo**: [codeofthrone-agent/openclaw-comparison](https://github.com/codeofthrone-agent/openclaw-comparison)
-
-| # | 報告檔名 | GitHub Issue |
-|---|----------|:---:|
-| 0 | `hermes-vs-openclaw-comparison.md` | [#12](https://github.com/codeofthrone-agent/openclaw-comparison/issues/12) |
-| 1 | `nanobot-vs-openclaw.md` | [#1](https://github.com/codeofthrone-agent/openclaw-comparison/issues/1) |
-| 2 | `zeroclaw-vs-openclaw.md` | [#2](https://github.com/codeofthrone-agent/openclaw-comparison/issues/2) |
-| 3 | `picoclaw-vs-openclaw.md` | [#3](https://github.com/codeofthrone-agent/openclaw-comparison/issues/3) |
-| 4 | `nanoclaw-vs-openclaw.md` | [#4](https://github.com/codeofthrone-agent/openclaw-comparison/issues/4) |
-| 5 | `copaw-vs-openclaw.md` | [#5](https://github.com/codeofthrone-agent/openclaw-comparison/issues/5) |
-| 6 | `ironclaw-vs-openclaw.md` | [#6](https://github.com/codeofthrone-agent/openclaw-comparison/issues/6) |
-| 7 | `lobsterai-vs-openclaw.md` | [#7](https://github.com/codeofthrone-agent/openclaw-comparison/issues/7) |
-| 8 | `tinyagi-vs-openclaw.md` | [#8](https://github.com/codeofthrone-agent/openclaw-comparison/issues/8) |
-| 9 | `nullclaw-vs-openclaw.md` | [#9](https://github.com/codeofthrone-agent/openclaw-comparison/issues/9) |
-| 10 | `moltis-vs-openclaw.md` | [#10](https://github.com/codeofthrone-agent/openclaw-comparison/issues/10) |
-| 11 | `zeptoclaw-vs-openclaw.md` | [#11](https://github.com/codeofthrone-agent/openclaw-comparison/issues/11) |
-| 12 | `rivonclaw-vs-openclaw.md` | [#16](https://github.com/codeofthrone-agent/openclaw-comparison/issues/16) |
-| ★ | `SUMMARY-report.md` | [#13](https://github.com/codeofthrone-agent/openclaw-comparison/issues/13) |
-
-### B. 外部資源
-
-| 資源 | 連結 |
-|:---|:---|
-| OpenClaw 官網 | https://openclaw.ai |
-| OpenClaw GitHub | https://github.com/openclaw/openclaw |
-| DeepWiki（架構文檔） | https://deepwiki.com/openclaw/openclaw |
-| ClawHub（Skills 市集） | （依安裝後 `openclaw skills hub` 訪問） |
-| Hermes Agent（對照框架） | https://github.com/nous-research/hermes-agent |
-| Hermes DeepWiki | https://deepwiki.com/nous-research/hermes-agent |
-
-### C. 快速查閱表
-
-| 任務 | 命令 |
-|:---|:---|
-| 啟動 OpenClaw | `openclaw run` |
-| 啟動 Web UI | `http://localhost:18789` |
-| CLI 對話 | `openclaw chat "你好"` |
-| 安裝技能 | `openclaw skills install <name>` |
-| 列出技能 | `openclaw skills list` |
-| 記憶同步 | `openclaw memory sync` |
-| 安全審計 | `openclaw audit run` |
-| 日誌管理 | `openclaw logs rotate` |
-| Docker 啟動 | `docker compose up -d` |
-| 檢查健康度 | `curl http://localhost:18789/health` |
 
 ---
-
-> **📄 報告版本**：V1.0 | **日期**：2026-04-04  
-> **基於資料**：13 份深度變體比較 + Hermes Agent 對照 + 生態系全貌分析 + DeepWiki  
-> **下一版**：待 DeepWiki 更新後加入更多配置語法範例  
-> **作者**：自動生成於 OpenClaw 生態系研究計畫
