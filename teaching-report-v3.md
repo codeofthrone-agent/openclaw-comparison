@@ -189,7 +189,35 @@ openclaw init
 
 ---
 
-## 段落 2️⃣ 安裝部署與環境準備 — 第 4 頁
+## 段落 2️⃣ 安裝部署與環境準備 — 第 5 頁
+
+### 🪟 Windows / 🐧 Linux 安裝（官方建議）
+
+> 來源：OpenClaw README（官方）
+> - `openclaw onboard` 是推薦的 CLI 安裝流程
+> - **支援 macOS / Linux / Windows（Windows 透過 WSL2，官方強烈建議）**
+
+**Runtime 需求**：Node 24（推薦）或 Node 22.16+
+
+#### Linux（原生）
+```bash
+npm install -g openclaw@latest
+# 或：pnpm add -g openclaw@latest
+
+openclaw onboard --install-daemon
+```
+
+#### Windows（WSL2）
+> 在 WSL2 內執行與 Linux 相同流程
+```bash
+npm install -g openclaw@latest
+# 或：pnpm add -g openclaw@latest
+
+openclaw onboard --install-daemon
+```
+
+---
+## 段落 2️⃣ 安裝部署與環境準備 — 第 5 頁
 
 ### 🐳 方法三：Docker Compose（推薦生產環境）
 
@@ -229,7 +257,7 @@ docker compose logs -f openclaw
 
 ---
 
-## 段落 2️⃣ 安裝部署與環境準備 — 第 5 頁
+## 段落 2️⃣ 安裝部署與環境準備 — 第 6 頁
 
 ### 第一次啟動與驗證
 
@@ -251,7 +279,7 @@ openclaw chat "你好！你是誰？"
 
 ---
 
-## 段落 2️⃣ 安裝部署與環境準備 — 第 6 頁
+## 段落 2️⃣ 安裝部署與環境準備 — 第 7 頁
 
 ### 基本配置文件結構
 
