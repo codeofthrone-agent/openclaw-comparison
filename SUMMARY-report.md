@@ -26,29 +26,25 @@
 
 ### 13 變體 + OpenClaw 核心 + Hermes · 全景對比矩陣
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                    OPENCLAW 生態系全景矩陣 (13 + 1 + 1)                                         │
-├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                                 │
-│  400K ┤                                                                                        ★ OpenClaw      │
-│       │                                                                                  ★ NanoBot             │
-│  300K ┤                                                                              ★ ZeroClaw                │
-│ Stars │                                                                          ★ PicoClaw                    │
-│       │                                                                        ★ NanoClaw                      │
-│  200K ┤                                                                  ★ CoPaw                               │
-│       │                                                            ★ IronClaw                                   │
-│  100K ┤                                                    ★ NullClaw                                            │
-│       │                                               ★ LobsterAI                                               │
-│       │                                          ★ TinyAGI                                                      │
-│   50K ┤                                    ★ Moltis                                                              │
-│       │                            ★ ZeptoClaw                                                                   │
-│       │                     ★ RivonClaw                                                                          │
-│       │  ★ Hermes (Nous Research, 獨立)                                                                           │
-│       └────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┤          │
-│          Python        Rust         TypeScript      Go           Zig         Rust         TS/Rust      分類       │
-│                                                                                                                 │
-└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+> **V1.1 校正**：舊版 ASCII 圖把多個專案的位置畫錯，且整份 `SUMMARY-report.md` 漏掉了 **NemoClaw**。以下改成**依真實 Stars 分層、按主要語言分組**的 15 項矩陣，避免視覺誤導。
+
+```text
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                               OPENCLAW 生態系全景矩陣 (13 + 1 + 1 = 15)                                      │
+├──────────────┬──────────────────────────────┬──────────────────────────────┬──────────────────────────────────┤
+│ Stars 區間    │ Python                       │ Rust / Zig                    │ TypeScript / Go                  │
+├──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────┤
+│ 300K+        │                              │                              │ OpenClaw (353K)                  │
+│ 30K–50K      │ NanoBot (37.8K)              │                              │                                  │
+│ 20K–30K      │                              │ ZeroClaw (29.3K)             │ NanoClaw (26.4K) / PicoClaw(27.3K) │
+│ 10K–20K      │ CoPaw (14.4K)                │ IronClaw (11.4K)             │ NemoClaw (18.8K)                 │
+│ 5K–10K       │ Hermes Agent (independent)   │ NullClaw (7.0K)              │                                  │
+│ 1K–5K        │                              │ Moltis (2.5K)                │ LobsterAI (4.8K) / TinyAGI (3.5K) │
+│ <1K          │                              │ ZeptoClaw (556)              │ RivonClaw (252)                  │
+├──────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────────┤
+│ 註 1：Hermes Agent 是獨立參照物，並非 OpenClaw 變體，因此以 independent 標註、不放入 GitHub stars 排序。        │
+│ 註 2：PicoClaw 為 Go；為了矩陣易讀，與 TypeScript 欄共列在同一側。                                            │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### 15 項目完整對比矩陣
@@ -60,15 +56,16 @@
 | 2 | **ZeroClaw** | 29,342 | Rust | 全平台零開銷 | 單一靜態 ~8.8MB | **28** |
 | 3 | **PicoClaw** | 27,275 | Go | IoT/邊緣設備 | Go 編譯 + Docker | IoT/MQTT |
 | 4 | **NanoClaw** | 26,373 | TypeScript | 容器化安全隔離 | Docker Compose/K8s | **6+** |
-| 5 | **CoPaw** | 14,363 | Python | 中國雲端部署 | `pip install` | 多平台 |
-| 6 | **IronClaw** | 11,361 | Rust | 安全隱私優先 | Rust + PostgreSQL | 4 |
-| 7 | **NullClaw** | 7,024 | Zig | 極速極小 | **~678 KB** 靜態 | **19** |
-| 8 | **LobsterAI** | 4,826 | TypeScript | 全場景 Cowork | 跨平台原生 App | 多平台 |
-| 9 | **TinyAGI** | 3,462 | TypeScript | 個人公司 Agent | Node.js | 3 |
-| 10 | **Moltis** | 2,479 | Rust | 可信任單一伺服 | 單一 Binary | 內建多通道 |
-| 11 | **ZeptoClaw** | 556 | Rust | 實驗極輕量 | Rust 編譯 | CLI |
-| 12 | **RivonClaw** | 252 | TypeScript | OpenClaw UI 層 | Wrapper | 繼承 25+ |
-| 13 | **Hermes Agent** | 開源 | Python | 通用型 AI Agent | pip/docker | **~17** |
+| 5 | **NemoClaw** | 18,810 | TypeScript | OpenShell 參考堆疊（封裝 OpenClaw） | installer + OpenShell | 企業/封閉環境 |
+| 6 | **CoPaw** | 14,363 | Python | 中國雲端部署 | `pip install` | 多平台 |
+| 7 | **IronClaw** | 11,361 | Rust | 安全隱私優先 | Rust + PostgreSQL | 4 |
+| 8 | **NullClaw** | 7,024 | Zig | 極速極小 | **~678 KB** 靜態 | **19** |
+| 9 | **LobsterAI** | 4,826 | TypeScript | 全場景 Cowork | 跨平台原生 App | 多平台 |
+| 10 | **TinyAGI** | 3,462 | TypeScript | 個人公司 Agent | Node.js | 3 |
+| 11 | **Moltis** | 2,479 | Rust | 可信任單一伺服 | 單一 Binary | 內建多通道 |
+| 12 | **ZeptoClaw** | 556 | Rust | 實驗極輕量 | Rust 編譯 | CLI |
+| 13 | **RivonClaw** | 252 | TypeScript | OpenClaw UI 層 | Wrapper | 繼承 25+ |
+| 14 | **Hermes Agent** | 開源 | Python | 通用型 AI Agent | pip/docker | **~17** |
 
 ### 生態系總計數值
 
@@ -104,8 +101,8 @@
            │          │          │          │          │          │
       OpenClaw │  NanoBot  │  ZeroClaw  │ IronClaw │ LobsterAI │ RivonClaw
                │  Hermes   │  NullClaw  │ Moltis   │ TinyAGI   │
-               │  NanoClaw │  PicoClaw  │ NanoClaw │           │
-               │  CoPaw    │  ZeptoClaw │          │           │
+               │  CoPaw    │  PicoClaw  │ NanoClaw │           │
+               │           │  ZeptoClaw │ NemoClaw │           │
 ```
 
 > **註：Hermes Agent** 為 Nous Research 開發的獨立通用型 AI Agent，設計理念為「多平台 gateway + 自我學習 + Provider-agnostic」，歸入輕量/通用型但具有獨特的 Provider-agnostic 架構。
@@ -142,13 +139,14 @@
 
 > **設計哲學**：「效能優先、極簡部署」— 犧牲功能換取速度、體積和资源效率。
 
-#### 🟨 D. 安全隔離型（3 個）
+#### 🟨 D. 安全隔離型（4 個）
 
 | 專案 | 安全機制 | 特色 |
 |------|----------|------|
 | **IronClaw** | WASM 沙箱+ AES-256-GCM、Prompt Injection 防禦 | NEAR AI OAuth 去中心化認證 |
 | **Moltis** | WASM sandbox + Rust 單一 Binary | 可審計、MCP 工具標準 |
 | **NanoClaw** | Docker 容器隔離（預設） | K8s-ready、高 fork 率(39%) |
+| **NemoClaw** | OpenShell sandbox + policy + managed inference | NVIDIA 企業級安全盒子、封裝 OpenClaw |
 
 > **設計哲學**：「安全即核心」— 將隔離和審計視為第一優先級。
 
